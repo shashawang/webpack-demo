@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('./element-icons.535877f5.woff') format('woff');
+  font-weight: 1000;
+  font-style: normal;
+}
+
+.hello {
+    color: red;
+    background: url('./masterMiao.png');
+    font-family: 'MyFont';
+  }
+  
