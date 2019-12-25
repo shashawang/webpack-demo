@@ -21,5 +21,5 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     // publicPath: '/' // web-dev-middlemare处理webpack文件给到server或express的app使用，publicPath会在服务器脚本用到
-  }, // test .gitconfig2
+  }, // test .gitconfig3
 };
