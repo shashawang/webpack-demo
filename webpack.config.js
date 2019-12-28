@@ -12,7 +12,7 @@ module.exports = {
     new HTMLWebpackPlugin({
       title: 'Code Splitting'
     }),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
     // new webpack.optimize.CommonsChunkPlugin({ // webpack4之后被SplitChunksPlugin替换
     //   name: 'common' 
     // })
