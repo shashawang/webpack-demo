@@ -14,14 +14,14 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: require.resolve('./src/index.js'),
-      //   use: 'imports-loader?this=>window' // 将CommonJS 环境下的 this(module.exports)用 imports-loader 覆写 
-      // },
-      // {
-      //   test: require.resolve('./src/globals.js'), // 文档上的路径会报错
-      //   use: 'exports-loader?file,parse=helpers.parse'
-      // }
+      {
+        test: require.resolve('./src/globals.js'), // 文档上的路径会报错
+        use: 'exports-loader?file,parse=helpers.parse'
+      },
+      {
+        test: require.resolve('./src/index.js'),
+        use: 'imports-loader?this=>window' // 将CommonJS 环境下的 this(module.exports)用 imports-loader 覆写 
+      }
     ]
   },
   plugins: [
