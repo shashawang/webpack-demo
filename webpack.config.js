@@ -54,14 +54,7 @@ module.exports = {
       },
       {
         test: /.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 1024,
-            }
-          }
-        ]
+        use: 'file-loader'
       }
     ]
   },

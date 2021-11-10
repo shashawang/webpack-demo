@@ -1,15 +1,113 @@
+const path = require('path');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const common = require('./webpack.common.js');
 
-module.exports = merge(common, {
+module.exports = {
+  entry: {
+    search: './src/search.js'
+  },
+  // plugins: [
+  //   new CleanWebpackPlugin(),
+  //   new HtmlWebpackPlugin({
+  //     title: 'Production'
+  //   })
+  // ],
+  output: {
+    filename: '[name]_[chunkhash:8].js',
+    // filename: 'bundle.js',
+    path: path.join(__dirname, 'dist')
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /.js$/,
+        use: 'babel-loader'
+      },
+      {
+        test: /.css$/,
+        use: [
+          // 'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
+      },
+      {
+        test: /.less$/,
+        use: [
+          // 'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader'
+        ]
+      },
+      {
+        test: /.(png|jpg|jpeg|gif)$/,
+        // use: 'file-loader'
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name]_[hash:8].[ext]'
+          }
+        }
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 102400,
+        //     }
+        //   }
+        // ]
+      },
+      {
+        test: /.(woff|woff2|eot|ttf|otf)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name]_[hash:8].[ext]'
+          }
+        }
+      }
+    ]
+  },
   plugins: [
-    new UglifyJSPlugin({
-        sourceMap: true // 避免在生产中使用 inline-*** 和 eval-***，因为它们可以增加 bundle 大小，并降低整体性能。 例子里好像加不加没啥区别
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash:8].css'
     }),
-    new webpack.DefinePlugin({ // process.env.NODE_ENV === 'production' ? '[name].[hash].bundle.js' : '[name].bundle.js' 这样的条件语句，在 webpack 配置文件中，无法按照预期运行.定义后，/src 的本地代码都可以使用该变量
-        'process.env.NODE_ENV': JSON.stringify('production')
-    })
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano')
+    }),
+    // new HtmlWebpackPlugin({
+    //   // template: path.join(__dirname, 'src/index.html'),
+    //   filename: 'index.html',
+    //   chunks: ['index'],
+    //   inject: true,
+    //   minify: {
+    //     html5: true,
+    //     collapseWhitespace: true,
+    //     preserveLineBreaks: false,
+    //     minifyCss: true,
+    //     minifyJs: true,
+    //     removeComments: false,
+    //   }
+    // }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/search.html'),
+      filename: 'search.html',
+      chunks: ['search'],
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCss: true,
+        minifyJs: true,
+        removeComments: false,
+      }
+    }),
   ]
-});
+};

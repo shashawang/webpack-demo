@@ -3,7 +3,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 // import pic from './pic.jpeg'
-import smPic from './smPic.jpeg'
+import smPic from './pic.jpeg'
 import './search.less'
 
 class Search extends React.Component {
