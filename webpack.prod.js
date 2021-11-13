@@ -38,7 +38,7 @@ const setMPA = () => {
   }
 }
 const {entry, HtmlWebpackPlugins} = setMPA()
-console.log('entry, HtmlWebpackPlugins', entry, HtmlWebpackPlugins);
+// console.log('entry, HtmlWebpackPlugins', entry, HtmlWebpackPlugins);
 module.exports = {
   entry: entry,
   // entry: {
