@@ -55,7 +55,8 @@ module.exports = {
     // filename: 'bundle.js',
     path: path.join(__dirname, 'dist')
   },
-  mode: 'production',
+  // mode: 'production',
+  mode: 'none',
   module: {
     rules: [
       {
@@ -162,5 +163,6 @@ module.exports = {
     //     removeComments: false,
     //   }
     // }),
-  ].concat(HtmlWebpackPlugins)
+  ].concat(HtmlWebpackPlugins),
+  devtool: 'inline-source-map'
 };
