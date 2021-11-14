@@ -182,11 +182,19 @@ module.exports = {
   devtool: 'source-map',
   optimization: {
     splitChunks: {
+      // cacheGroups: {
+      //   commons: {
+      //     test: /(react|react-dom)/,
+      //     name: 'vendors', // !important 名字要加在 html-webpack-plugin 的 chunks 中
+      //     chunks: 'all'
+      //   }
+      // }
+      minSize: 0,
       cacheGroups: {
         commons: {
-          test: /(react|react-dom)/,
-          name: 'vendors',
-          chunks: 'all'
+          chunks: 'all',
+          name: 'commons',
+          minChunks: 3
         }
       }
     }

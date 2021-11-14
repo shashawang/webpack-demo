@@ -91,6 +91,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+
 
 
 function component() {
@@ -116,6 +118,17 @@ function cube(x) {
   return x * x * x;
 }
 
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "common", function() { return common; });
+function common() {
+  return 'common module';
+}
+
 /***/ })
 /******/ ]);
-//# sourceMappingURL=index_c359fa4c.js.map
+//# sourceMappingURL=index_6f5120a6.js.map

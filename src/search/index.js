@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 // import pic from './pic.jpeg'
 import smPic from '../pic.jpeg'
 import './search.less'
+import '../../common';
 
 class Search extends React.Component {
   render(h) {
