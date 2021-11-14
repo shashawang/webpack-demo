@@ -56,8 +56,8 @@ module.exports = {
     // filename: 'bundle.js',
     path: path.join(__dirname, 'dist')
   },
-  mode: 'production',
-  // mode: 'none',
+  // mode: 'production',
+  mode: 'none',
   module: {
     rules: [
       {
@@ -150,6 +150,7 @@ module.exports = {
     //   ]
     // }),
     new CleanWebpackPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin()
     // new HtmlWebpackPlugin({
     //   // template: path.join(__dirname, 'src/index.html'),
     //   filename: 'index.html',
