@@ -56,8 +56,8 @@ module.exports = {
     // filename: 'bundle.js',
     path: path.join(__dirname, 'dist')
   },
-  // mode: 'production',
-  mode: 'none',
+  mode: 'production',
+  // mode: 'none',
   module: {
     rules: [
       {
@@ -189,12 +189,12 @@ module.exports = {
       //     chunks: 'all'
       //   }
       // }
-      minSize: 0,
+      minSize: 0, // 打出的包最小体积
       cacheGroups: {
         commons: {
           chunks: 'all',
           name: 'commons',
-          minChunks: 3
+          minChunks: 3 // 打出的包最少被几个文件引用
         }
       }
     }
