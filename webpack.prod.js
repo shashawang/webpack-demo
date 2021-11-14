@@ -20,7 +20,7 @@ const setMPA = () => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, `src/${pageName}/index.html`),
         filename: `${pageName}.html`,
-        chunks: [pageName],
+        chunks: ['vendors', pageName],
         inject: true,
         minify: {
           html5: true,
@@ -135,20 +135,20 @@ module.exports = {
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
     }),
-    new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'react',
-          entry: 'https://now8.gtimg.com/now/lib/16.8.6/react.min.js',
-          global: 'React'
-        },
-        {
-          module: 'react-dom',
-          entry: 'https://now8.gtimg.com/now/lib/16.8.6/react-dom.min.js',
-          global: 'ReactDOM'
-        },
-      ]
-    }),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: [
+    //     {
+    //       module: 'react',
+    //       entry: 'https://now8.gtimg.com/now/lib/16.8.6/react.min.js',
+    //       global: 'React'
+    //     },
+    //     {
+    //       module: 'react-dom',
+    //       entry: 'https://now8.gtimg.com/now/lib/16.8.6/react-dom.min.js',
+    //       global: 'ReactDOM'
+    //     },
+    //   ]
+    // }),
     new CleanWebpackPlugin(),
     // new HtmlWebpackPlugin({
     //   // template: path.join(__dirname, 'src/index.html'),
@@ -179,5 +179,16 @@ module.exports = {
     //   }
     // }),
   ].concat(HtmlWebpackPlugins),
-  devtool: 'inline-source-map'
+  devtool: 'source-map',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /(react|react-dom)/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  }
 };
