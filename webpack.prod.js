@@ -1,6 +1,7 @@
 const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
@@ -133,6 +134,20 @@ module.exports = {
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
+    }),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'react',
+          entry: 'https://now8.gtimg.com/now/lib/16.8.6/react.min.js',
+          global: 'React'
+        },
+        {
+          module: 'react-dom',
+          entry: 'https://now8.gtimg.com/now/lib/16.8.6/react-dom.min.js',
+          global: 'ReactDOM'
+        },
+      ]
     }),
     new CleanWebpackPlugin(),
     // new HtmlWebpackPlugin({
