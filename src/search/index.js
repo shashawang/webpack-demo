@@ -9,10 +9,28 @@ import '../../common';
 import {a} from './tree-shaking'
 
 class Search extends React.Component {
+  constructor() {
+    super(...arguments);
+    this.state = {
+      Text: null
+    }
+  }
+
+  loadComponent() {
+    import('./text.js').then((Text) => {
+      this.setState({
+        Text: Text.default
+      })
+    })
+  }
+
   render(h) {
-    const text = a()
+    const {Text} = this.state
     return <div className="search_text">Search Text...888
-      <img src={smPic} />
+      {
+        Text ? <Text /> : null
+      }
+      <img src={smPic} onClick={this.loadComponent.bind(this)} />
     </div>;
   }
 }

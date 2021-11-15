@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/search/text.js"],"names":[],"mappings":";;;;;;AAAA;AAAA;AAAA;AAAA;AAEc;AAAA,sBAAM,8FAAN;AAAA,CAAd,E","file":"2_7b3517e8.js","sourcesContent":["import React from \"react\";\r\n\r\nexport default() => <div>动态 import</div>;"],"sourceRoot":""}
